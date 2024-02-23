@@ -1,4 +1,6 @@
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
@@ -21,5 +23,51 @@ public class LoginTests extends BaseTest {
         driver.get(url);
         Assert.assertEquals(driver.getCurrentUrl(), url);
         driver.quit();
+    }
+
+    @Test
+    public void logoutTest() throws InterruptedException{
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--disable-notifications");
+        //Wait
+        WebDriver driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        //Navigation
+        //Pre condition - Have login page open
+        String url = "https://demo.koel.dev/";
+        driver.get(url);
+
+        //Locators
+        //Enter Email
+        WebElement emailField = driver.findElement(By.cssSelector("input[type = 'email']"));
+        emailField.clear();
+        emailField.sendKeys("demo@koel.dev");
+        Thread.sleep(2000);
+        //Enter Password
+        WebElement passwordField = driver.findElement(By.cssSelector("input[type = 'password']"));
+        passwordField.clear();
+        passwordField.sendKeys("demo");
+        Thread.sleep(2000);
+        //Click on login button
+        WebElement loginButton = driver.findElement(By.cssSelector("button[type = 'submit']"));
+        loginButton.click();
+
+        Thread.sleep(5000);
+
+        //Click on logout button
+        WebElement logoutButton = driver.findElement(By.cssSelector("i[class = 'fa fa-sign-out']"));
+        logoutButton.click();
+
+        Thread.sleep(2000);
+
+        //Assertion
+        WebElement loginButton1 = driver.findElement(By.cssSelector("button[type = 'submit']"));
+        Assert.assertTrue(loginButton1.isDisplayed());
+
+        //Quit the browser
+        driver.quit();
+
+
     }
 }
