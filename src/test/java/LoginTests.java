@@ -12,8 +12,6 @@ public class LoginTests extends BaseTest {
         //driver.quit();
     }
 
-
-
     /**
      * Email: Valid
      * Password: Valid
@@ -65,7 +63,6 @@ public class LoginTests extends BaseTest {
         //Assertions (Expected VS Actual)
         WebElement avatarIcon = driver.findElement(By.cssSelector(".view-profile"));
         Assert.assertTrue(avatarIcon.isDisplayed());
-
     }
 
 
