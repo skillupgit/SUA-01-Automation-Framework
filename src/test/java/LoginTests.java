@@ -56,18 +56,30 @@ public class LoginTests extends BaseTest {
         Thread.sleep(5000);
 
         //Click on logout button
-        WebElement logoutButton = driver.findElement(By.cssSelector("i[class = 'fa fa-sign-out']"));
+        WebElement logoutButton = driver.findElement(By.xpath("//button[@data-title='Log out']"));
         logoutButton.click();
 
         Thread.sleep(2000);
 
         //Assertion
-        WebElement loginButton1 = driver.findElement(By.cssSelector("button[type = 'submit']"));
-        Assert.assertTrue(loginButton1.isDisplayed());
+        WebElement loginForm = driver.findElement(By.xpath("//form[@data-testid='login-form']"));
+        Assert.assertTrue(loginForm.isDisplayed());
 
         //Quit the browser
         driver.quit();
 
+
+    }
+    @Test
+    public void loginValidEmailPassword() throws InterruptedException{
+
+        navigateToKoel();
+        provideEmail("demo@class.com");
+        providePassword("te$t$tudent");
+        loginToKoel();
+
+        WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
+        Assert.assertTrue(avatarIcon.isDisplayed());
 
     }
 }
