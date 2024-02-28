@@ -34,17 +34,17 @@ public class Homework16 extends BaseTest{
     }
 
     public void addToSkillupPlaylist() {
-        WebElement skillUpPlaylist = driver.findElement(By.cssSelector(""));
+        WebElement skillUpPlaylist = driver.findElement(By.xpath(""));
         skillUpPlaylist.click();
     }
 
     public void clickAddToButton() {
-        WebElement addToButton = driver.findElement(By.cssSelector(""));
+        WebElement addToButton = driver.findElement(By.xpath("//header/main[1]/div[2]/div[1]/span[1]/button[2]"));
         addToButton.click();
     }
 
     public void clickFirstSong() {
-        WebElement firstSong = driver.findElement(By.cssSelector("div[class='playing selected song-item']"));
+        WebElement firstSong = driver.findElement(By.cssSelector("span[class='title text-primary']"));
         firstSong.click();
     }
 
