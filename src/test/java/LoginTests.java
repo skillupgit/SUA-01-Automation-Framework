@@ -74,11 +74,11 @@ public class LoginTests extends BaseTest {
     public void loginValidEmailPassword() throws InterruptedException{
 
         navigateToKoel();
-        provideEmail("demo@class.com");
-        providePassword("te$t$tudent");
+        provideEmail("demo@koel.dev");
+        providePassword("demo");
         loginToKoel();
 
-        WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
+        WebElement avatarIcon = driver.findElement(By.cssSelector("img[alt='Avatar of Koel']"));
         Assert.assertTrue(avatarIcon.isDisplayed());
 
     }
