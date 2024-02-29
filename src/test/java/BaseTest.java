@@ -89,6 +89,19 @@ public class BaseTest {
 
     }
 
+    @Test
+    public void loginValidEmailPassword() throws InterruptedException{
+
+        navigateToKoel();
+        provideEmail("demo@koel.dev");
+        providePassword("demo");
+        loginToKoel();
+
+        WebElement avatarIcon = driver.findElement(By.cssSelector("img[alt='Avatar of Koel']"));
+        Assert.assertTrue(avatarIcon.isDisplayed());
+
+    }
+
 
 }
 
