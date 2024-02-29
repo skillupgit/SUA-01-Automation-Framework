@@ -15,31 +15,43 @@ public class Homework16 extends BaseTest{
     public void addSongToPlaylist() throws InterruptedException {
         //Navigate to Koel
         navigateToKoel();
+        Thread.sleep(2000);
         //Login with Credentials
         provideEmail("demo@koel.dev");
         providePassword("demo");
         loginToKoel();
+        Thread.sleep(2000);
         //search for a song
         searchForSong("Blue Shadow");
+        Thread.sleep(2000);
         //click view all to display the search results
         clickViewAll();
+        Thread.sleep(2000);
         //click the first song in the search results
         clickFirstSong();
+        Thread.sleep(2000);
         //click ADD TO button
         clickAddToButton();
+        Thread.sleep(2000);
         //Choose skillup playlist and add song
         addToSkillupPlaylist();
+        Thread.sleep(2000);
         //Assertion
+        WebElement messageSuccess = driver.findElement(By.xpath("//main[text() = 'Added 1 song into \"skillup.\"']"));
+        Assert.assertTrue(messageSuccess.isDisplayed());
+
+        //Quit Browser
+        driver.quit();
 
     }
 
     public void addToSkillupPlaylist() {
-        WebElement skillUpPlaylist = driver.findElement(By.xpath(""));
+        WebElement skillUpPlaylist = driver.findElement(By.xpath("//section[@id='songResultsWrapper'] //li[text() = 'skillup']"));
         skillUpPlaylist.click();
     }
 
     public void clickAddToButton() {
-        WebElement addToButton = driver.findElement(By.xpath("//header/main[1]/div[2]/div[1]/span[1]/button[2]"));
+        WebElement addToButton = driver.findElement(By.cssSelector("#songResultsWrapper button[green]"));
         addToButton.click();
     }
 
