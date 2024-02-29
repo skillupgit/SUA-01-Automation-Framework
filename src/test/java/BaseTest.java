@@ -45,16 +45,16 @@ public class BaseTest {
         loginBtn.click();
     }
 
-    public void providePassword(String s) {
+    public void providePassword(String password) {
         WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
         passwordField.clear();
-        passwordField.sendKeys("demo");
+        passwordField.sendKeys(password);
     }
 
-    public void provideEmail(String s) {
+    public void provideEmail(String email) {
         WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
         emailField.clear();
-        emailField.sendKeys("demo@koel.dev");
+        emailField.sendKeys(email);
     }
 
     public void navigateToKoel() {
