@@ -3,6 +3,7 @@
 
 <suite name="Regression">
 
+    <parameter name="BaseURL" value="https://demo.koel.dev/"></parameter>
     <test name="Regression" preserve-order="false">
         <classes>
             <class name="LoginTests"/>

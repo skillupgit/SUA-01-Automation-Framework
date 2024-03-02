@@ -7,9 +7,8 @@ public class LoginTests extends BaseTest {
     @Test()
     public void testNavigationToKoel() {
         String url = "https://demo.koel.dev/";
-        driver.get(url);
         Assert.assertEquals(driver.getCurrentUrl(), url);
-        //driver.quit();
+
     }
 
     /**
@@ -19,9 +18,6 @@ public class LoginTests extends BaseTest {
      */
     @Test()
     public void loginValidEmailPassword() throws InterruptedException {
-        //Navigation
-        //Pre-Condition
-        navigateToKoel();
         provideEmail("demo@koel.dev");
         providePassword("demo");
         clickLoginBtn();
@@ -39,7 +35,6 @@ public class LoginTests extends BaseTest {
      */
     @Test
     public void loginInvalidEmailPassword() throws InterruptedException {
-        navigateToKoel();
         provideEmail("demo@koel.dev");
         providePassword("demo");
         clickLoginBtn();
@@ -56,13 +51,23 @@ public class LoginTests extends BaseTest {
      */
     @Test
     public void loginWithEmptyEmailPassword() throws InterruptedException {
-        navigateToKoel();
         provideEmail("demo@koel.dev");
         providePassword("demo");
         clickLoginBtn();
         //Assertions (Expected VS Actual)
         WebElement avatarIcon = driver.findElement(By.cssSelector(".view-profile"));
         Assert.assertTrue(avatarIcon.isDisplayed());
+    }
+
+    //Negative Test Method using DataProvider
+    @Test(dataProvider = "NegativeLoginTestData", dataProviderClass=TestDataProvider.class)
+    public void negativeLoginTests(String email, String password){
+        provideEmail(email);
+        providePassword(password);
+        clickLoginBtn();
+        //Assertion
+        String expectedUrl = "https://demo.koel.dev/";
+        Assert.assertEquals(driver.getCurrentUrl(), expectedUrl);
     }
 
 

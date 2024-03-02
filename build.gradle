@@ -20,8 +20,10 @@ dependencies {
 
 test {
     useTestNG() {
-        //suites "src/test/resources/TestNG.xml"
+        suites "src/test/resources/TestNG.xml"
         //suites "src/test/resources/Smoke.xml"
-        suites "src/test/resources/Regression.xml"
+        //suites "src/test/resources/Regression.xml"
     }
 }
+
+//Smoke
