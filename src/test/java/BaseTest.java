@@ -92,7 +92,7 @@ public class BaseTest {
     @Test
     public void loginValidEmailPassword() throws InterruptedException{
 
-        navigateToKoel();
+
         provideEmail("demo@koel.dev");
         providePassword("demo");
         loginToKoel();

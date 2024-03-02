@@ -18,6 +18,8 @@ public class Homework17 extends BaseTest{
         //Assertion - if the album thumbnail is spinning or pause button is displayed
         WebElement pauseDisplayed = driver.findElement(By.cssSelector("button[class='playing']"));
         Assert.assertTrue(pauseDisplayed.isDisplayed());
+        Thread.sleep(2000);
+        driver.quit();
     }
 
     public void clickPlayButton() {

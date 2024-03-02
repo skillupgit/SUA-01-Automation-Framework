@@ -3,7 +3,7 @@
 
 <suite name="Homework17">
 
-    <test name="Homework17 Test" preserve-order="false">
+    <test name="Homework17" preserve-order="false">
         <classes>
             <class name="Homework17"/>
         </classes>
