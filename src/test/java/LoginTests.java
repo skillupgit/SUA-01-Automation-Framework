@@ -1,5 +1,6 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -22,7 +23,11 @@ public class LoginTests extends BaseTest {
         providePassword("demo");
         clickLoginBtn();
         //Assertions (Expected VS Actual)
-        WebElement avatarIcon = driver.findElement(By.cssSelector(".view-profile"));
+        //Explicit Wait Example
+        //WebElement avatarIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".view-profile")));
+        //With Fluent Wait
+        WebElement avatarIcon = fluentWait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".view-profile")));
+        //driver.findElement(By.cssSelector(".view-profile"));
         Assert.assertTrue(avatarIcon.isDisplayed());
     }
 
