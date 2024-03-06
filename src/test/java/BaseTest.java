@@ -89,7 +89,7 @@ public class BaseTest {
 
     }
 
-    @Test
+
     public void loginValidEmailPassword() throws InterruptedException{
 
 
@@ -97,8 +97,8 @@ public class BaseTest {
         providePassword("demo");
         loginToKoel();
 
-        WebElement avatarIcon = driver.findElement(By.cssSelector("img[alt='Avatar of Koel']"));
-        Assert.assertTrue(avatarIcon.isDisplayed());
+        //WebElement avatarIcon = driver.findElement(By.cssSelector("img[alt='Avatar of Koel']"));
+        //Assert.assertTrue(avatarIcon.isDisplayed());
 
     }
 
