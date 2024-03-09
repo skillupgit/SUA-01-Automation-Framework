@@ -49,12 +49,13 @@ public class AllSongsTest extends BaseTest{
         openFavoritesPlaylist();
         Thread.sleep(4000);
         //Assert that the song is present in the favorites playlist
-        //Assert.assertTrue(isSongInFavorites("1984"));
+        Assert.assertTrue(isSongInFavorites("1984"));
     }
 
     public boolean isSongInFavorites(String songName){ //section[@id='favoriteWrapper']
+        ////section[@id='favoritesWrapper']//span[@class='title text-primary'][text()='"+1979+"']
         WebElement songInFavoriteList = wait.until(ExpectedConditions.visibilityOfElementLocated
-                (By.xpath("//span[@class='title text-primary'][text()='"+songName+"']")));
+                (By.xpath("//section[@id='favoritesWrapper']//span[@class='title text-primary'][text()='"+songName+"']")));
         return songInFavoriteList.isDisplayed();
     }
 
