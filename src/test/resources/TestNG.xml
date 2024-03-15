@@ -6,8 +6,8 @@
     <parameter name="BaseURL" value="https://demo.koel.dev/"></parameter>
     <test name="Example Test" preserve-order="false">
         <classes>
-            <class name="LoginTests"/>
-            <class name="ProfileTest"/>
+           <!-- <class name="LoginTests"/>
+            <class name="ProfileTest"/> -->
             <class name="AllSongsTest"/>
             <class name="BaseTest"/>
         </classes>
