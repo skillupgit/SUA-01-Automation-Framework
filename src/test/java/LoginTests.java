@@ -91,5 +91,32 @@ public class LoginTests extends BaseTest {
 
     }
 
+    @Test
+    public void loginTestWithParallelExecution(){
+        //Page Object
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
+        //Test Steps
+        loginPage.provideEmail("demoa@koel.dev");
+        loginPage.providePassword("demo");
+        loginPage.clickLoginBtn();
+        //Assertions
+        Assert.assertTrue(homePage.getUserAvatarIcon().isDisplayed());
+    }
+
+    @Test
+    public void loginTestWithParallelExecution2(){
+        //Page Object
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
+        //Test Steps
+        loginPage.provideEmail("demo@koel.dev");
+        loginPage.providePassword("demo");
+        loginPage.clickLoginBtn();
+        //Assertions
+        Assert.assertTrue(homePage.getUserAvatarIcon().isDisplayed());
+
+    }
+
 
 }

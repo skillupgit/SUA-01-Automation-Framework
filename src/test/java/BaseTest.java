@@ -29,6 +29,12 @@ public class BaseTest {
 
     Actions actions;
 
+    private static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
+
+    public static WebDriver getDriver(){
+        return threadDriver.get();
+    }
+
     //public String url = "https://demo.koel.dev/";
 
     @BeforeSuite
@@ -37,14 +43,14 @@ public class BaseTest {
         WebDriverManager.firefoxdriver().setup();
     }
 
-    @BeforeMethod
+    /*@BeforeMethod
     @Parameters({"BaseURL"})
     public void launchBrowser(String baseUrl) throws MalformedURLException {
-        /*ChromeOptions options = new ChromeOptions();
+        *//*ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("--disable-notifications");
 
-        driver = new ChromeDriver(options);*/
+        driver = new ChromeDriver(options);*//*
         //driver = new FirefoxDriver();
         driver = pickBrowser(System.getProperty("browser"));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
@@ -55,12 +61,33 @@ public class BaseTest {
         driver.manage().window().maximize();
         actions = new Actions(driver);
         navigateToKoel(baseUrl);
+    }*/
+
+    @BeforeMethod
+    @Parameters({"BaseURL"})
+    public void launchBrowser(String baseUrl) throws MalformedURLException {
+        threadDriver.set(pickBrowser(System.getProperty("browser")));
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        //Explicit Wait setup
+        wait = new WebDriverWait(getDriver(),Duration.ofSeconds(5));
+        //Fluent Wait setup
+        fluentWait = new FluentWait<>(getDriver()).withTimeout(Duration.ofSeconds(5)).pollingEvery(Duration.ofMillis(250));
+        getDriver().manage().window().maximize();
+        actions = new Actions(getDriver());
+        navigateToKoel(baseUrl);
     }
 
 
-    @AfterMethod
+    /*@AfterMethod
     public void closeBrowser(){
         driver.quit();
+    }*/
+
+    @AfterMethod
+    public void tearDown(){
+        threadDriver.get().close();
+        threadDriver.remove();
     }
 
     public static WebDriver pickBrowser(String browser) throws MalformedURLException {
@@ -130,6 +157,6 @@ public class BaseTest {
 
     public void navigateToKoel(String baseUrl) {
         //String url = "https://demo.koel.dev/";
-        driver.get(baseUrl);
+        getDriver().get(baseUrl);
     }
 }
